@@ -49,6 +49,13 @@
 		<mkdir dir="${basedir}/build/phpdox" />
 		<property name="prepare.done" value="true" />
 	</target>
+	<target name="compinstall" unless="compinstall.done"
+		description="Perform composer installation">
+		<exec executable="composer" taskname="composer install">
+			<arg value="install" />
+		</exec>
+		<property name="compinstall.done" value="true" />
+	</target>
 	<target name="lint" unless="lint.done"
 		description="Perform syntax check of sourcecode files">
 		<apply executable="php" taskname="lint">
@@ -157,7 +164,7 @@
 		</exec>
 		<property name="phpcpd.done" value="true" />
 	</target>
-	<target name="phpunit" unless="phpunit.done" depends="prepare"
+	<target name="phpunit" unless="phpunit.done" depends="prepare,compinstall"
 		description="Run unit tests with PHPUnit">
 		<exec executable="${phpunit}" resultproperty="result.phpunit"
 			taskname="phpunit">
