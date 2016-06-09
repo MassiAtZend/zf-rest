@@ -6,7 +6,7 @@
 			<exclude mask="*autoload.php" />
 		</collector>
 		<generator output="${basedir}/build/api">
-			<enrich base="${basedir}/../">
+			<enrich base="${basedir}/../..">
 				<source type="build" />
 				<source type="checkstyle">
 					<file name="4_Checkstyle/build/logs/checkstyle.xml" />
