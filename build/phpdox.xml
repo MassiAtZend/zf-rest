@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config">
+	<project name="zf-rest" source="${basedir}" workdir="${basedir}/build/phpdox">
+		<collector publiconly="false">
+			<include mask="*.php" />
+			<exclude mask="*autoload.php" />
+		</collector>
+		<generator output="${basedir}/build/phpdox">
+			<enrich base="${workspace}">
+				<source type="build" />
+				<source type="checkstyle">
+					<file name="4_Checkstyle/build/logs/checkstyle.xml" />
+				</source>
+				<source type="pmd">
+					<file name="4_MessDetection/build/logs/pmd.xml" />
+				</source>
+				<source type="phploc">
+					<file name="4_LOC/build/logs/phploc.xml" />
+				</source>
+				<source type="phpunit">
+					<coverage path="3_UnitTesting/build/coverage/xml" />
+				</source>
+			</enrich>
+			<build engine="html" output="html" />
+		</generator>
+	</project>
+</phpdox>
+

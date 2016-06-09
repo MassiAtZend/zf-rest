@@ -10,7 +10,8 @@
 		</whitelist>
 	</filter>
 	<logging>
-		<log type="coverage-html" target="coverage/" />
+		<log type="coverage-html" target="coverage/html" />
+		<log type="coverage-xml"  target="coverage/xml" />
 		<log type="coverage-clover" target="logs/clover.xml" />
 		<log type="coverage-crap4j" target="logs/crap4j.xml" />
 		<log type="junit" target="logs/junit.xml"
