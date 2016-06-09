@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config">
-	<project name="zf-rest" source="${basedir}" workdir="${basedir}/build/api/xml">
+	<project name="zf-rest" source="${basedir}/../" workdir="${basedir}/api/xml">
 		<collector publiconly="false">
 			<include mask="*.php" />
 			<exclude mask="*autoload.php" />
 		</collector>
-		<generator output="${basedir}/build/api">
+		<generator output="${basedir}/api">
 			<enrich base="${basedir}/../..">
 				<source type="build" />
 				<source type="checkstyle">
