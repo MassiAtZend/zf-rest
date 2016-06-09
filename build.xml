@@ -60,7 +60,7 @@
 		description="Perform syntax check of sourcecode files">
 		<apply executable="php" taskname="lint">
 			<arg value="-l" />
-			<fileset dir="${basedir}/src">
+			<fileset dir="${basedir}">
 				<include name="**/*.php" />
 				<modified />
 			</fileset>
