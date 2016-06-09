@@ -71,8 +71,7 @@
 		description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
 		<exec executable="${phploc}" taskname="phploc">
 			<arg value="--count-tests" />
-			<arg path="${basedir}/src" />
-			<arg path="${basedir}/tests" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phploc.done" value="true" />
 	</target>
@@ -84,8 +83,7 @@
 			<arg path="${basedir}/build/logs/phploc.csv" />
 			<arg value="--log-xml" />
 			<arg path="${basedir}/build/logs/phploc.xml" />
-			<arg path="${basedir}/src" />
-			<arg path="${basedir}/tests" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phploc.done" value="true" />
 	</target>
@@ -96,7 +94,7 @@
 			<arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
 			<arg
 				value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-			<arg path="${basedir}/src" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="pdepend.done" value="true" />
 	</target>
@@ -126,8 +124,7 @@
 			<arg value="--standard=PSR2" />
 			<arg value="--extensions=php" />
 			<arg value="--ignore=autoload.php" />
-			<arg path="${basedir}/src" />
-			<arg path="${basedir}/tests" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phpcs.done" value="true" />
 	</target>
@@ -139,15 +136,14 @@
 			<arg value="--standard=PSR2" />
 			<arg value="--extensions=php" />
 			<arg value="--ignore=autoload.php" />
-			<arg path="${basedir}/src" />
-			<arg path="${basedir}/tests" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phpcs.done" value="true" />
 	</target>
 	<target name="phpcpd" unless="phpcpd.done"
 		description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
 		<exec executable="${phpcpd}" taskname="phpcpd">
-			<arg path="${basedir}/src" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phpcpd.done" value="true" />
 	</target>
@@ -156,7 +152,7 @@
 		<exec executable="${phpcpd}" taskname="phpcpd">
 			<arg value="--log-pmd" />
 			<arg path="${basedir}/build/logs/pmd-cpd.xml" />
-			<arg path="${basedir}/src" />
+			<arg path="${basedir}" />
 		</exec>
 		<property name="phpcpd.done" value="true" />
 	</target>
