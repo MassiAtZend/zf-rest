@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package xmlns="http://www.zend.com/server/deployment-descriptor/1.0" version="1.0">
+  <type>library</type>
+    <name>MassiZFRest</name>
+    <version>
+        <release>1.0.0</release>
+    </version>
+    <dependencies>
+    <required>
+      <php>
+        <min>5.5</min>
+      </php>
+      <zendserver>
+        <min>8.5.3</min>
+      </zendserver>
+      <zendserver>
+        <min>2.4.0</min>
+      </zendserver>
+    </required>
+  </dependencies>
+    </package>
