@@ -7,6 +7,7 @@
 	<property name="phploc" value="phploc" />
 	<property name="phpmd" value="phpmd" />
 	<property name="phpunit" value="phpunit" />
+	<property name="phpmetrics" value="phpmetrics" />
 	<target name="full-build"
 		depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
 		description="Performs static analysis, runs the tests, and generates project documentation" />
@@ -155,6 +156,16 @@
 			<arg path="${basedir}" />
 		</exec>
 		<property name="phpcpd.done" value="true" />
+	</target>
+	<target name="phpmetrics" unless="phpmetrics.done" depends="prepare"
+		description="It provides a large set of software metrics from a given code base.">
+		<exec executable="${phpmetrics}" taskname="phpmetrics">
+			<arg value="--report-html=${basedir}/build/logs/phpmetrics.html" />
+			<arg value="--report-xml=${basedir}/build/logs/phpmetrics.xml" />
+			<arg value="--violations-xml=${basedir}/build/logs/phpmetrics-violations.xmld" />
+			<arg path="${basedir}" />
+		</exec>
+		<property name="phpmetrics.done" value="true" />
 	</target>
 	<target name="phpunit" unless="phpunit.done" depends="prepare,compinstall"
 		description="Run unit tests with PHPUnit">
