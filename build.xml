@@ -9,6 +9,7 @@
 	<property name="phpunit" value="phpunit" />
 	<property name="phpmetrics" value="phpmetrics" />
 	<property name="zsclient" value="/usr/local/zend/bin/zs-client.sh" />
+	<property file="/var/jenkins/zs-testing.properties" />
 	<target name="full-build"
 		depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
 		description="Performs static analysis, runs the tests, and generates project documentation" />
@@ -55,6 +56,19 @@
 		description="Perform composer installation">
 		<exec executable="composer" taskname="composer install">
 			<arg value="install" />
+		</exec>
+		<property name="compinstall.done" value="true" />
+	</target>
+	<target name="zs-targets" unless="zs-targets.done"
+		description="Set up Zend Server targets for the pipeline">
+		<exec executable="${zsclient}" taskname="zendserver targets">
+			<env key="HOME" value="/var/jenkins_home" />
+			<env key="HTTP_TIMEOUT" value="30" />
+			<arg value="addTarget" />
+			<arg value="--target=testing" />
+			<arg value="--zskey=${zs.testing.key}" />
+			<arg value="--zssecret=${zs.testing.secret}" />
+			<arg value="--zsurl=${zs.testing.url}" />
 		</exec>
 		<property name="compinstall.done" value="true" />
 	</target>
@@ -210,5 +224,16 @@
 			<arg value="--name=zf-rest.zpk" />
 		</exec>
 		<property name="package.done" value="true" />
+	</target>
+	<target name="deploy-testing" unless="deploy-testing.done" depends="zs-targets"
+		description="Deploying the analyzed package to the testing environment.">
+		<exec executable="${zsclient}" failonerror="true" taskname="deploy-testing">
+			<arg value="installApp" />
+			<arg value="--zpk=${basedir}/build/zf-rest.zpk" />
+			<arg value="--target=testing" />
+			<arg value="--baseUri='http://zfrest.test'" />
+			<arg value="--createVhost=true" />
+		</exec>
+		<property name="deploy-testing.done" value="true" />
 	</target>
 </project>
