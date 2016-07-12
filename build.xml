@@ -61,7 +61,7 @@
 	</target>
 	<target name="zs-targets" unless="zs-targets.done"
 		description="Set up Zend Server targets for the pipeline">
-		<exec executable="${zsclient}" taskname="zendserver targets">
+		<exec executable="${zsclient}" failonerror="true" taskname="zendserver targets">
 			<env key="HOME" value="/var/jenkins_home" />
 			<env key="HTTP_TIMEOUT" value="30" />
 			<arg value="addTarget" />
