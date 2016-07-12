@@ -9,7 +9,7 @@
 	<property name="phpunit" value="phpunit" />
 	<property name="phpmetrics" value="phpmetrics" />
 	<property name="zsclient" value="/usr/local/zend/bin/zs-client.sh" />
-	<property file="/var/jenkins/zs-testing.properties" />
+	<property file="/var/jenkins/zs.properties" />
 	<target name="full-build"
 		depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
 		description="Performs static analysis, runs the tests, and generates project documentation" />
