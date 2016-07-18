@@ -2,8 +2,11 @@
 <package xmlns="http://www.zend.com/server/deployment-descriptor/1.0" version="1.0">
   <type>library</type>
     <name>MassiZFRest</name>
+    <summary>ZF Rest module from Apigility</summary>
+    <description>The ZF Rest module from Apigility converted to a functional Zend Server libary package.</description>
     <version>
         <release>1.0.0</release>
+        <api>1.0.0</api>
     </version>
     <dependencies>
     <required>

@@ -203,8 +203,8 @@
 	<target name="deploy-testing" unless="deploy-testing.done" depends="zs-targets"
 		description="Deploying the analyzed package to the testing environment.">
 		<exec executable="${zsclient}" failonerror="true" taskname="deploy-testing">
-			<arg value="installApp" />
-			<arg value="--zpk=${basedir}/build/zf-rest.zpk" />
+			<arg value="libraryVersionDeploy" />
+			<arg value="--libPackage=${basedir}/build/zf-rest.zpk" />
 			<arg value="--target=testing" />
 		</exec>
 		<property name="deploy-testing.done" value="true" />
