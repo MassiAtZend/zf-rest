@@ -231,8 +231,6 @@
 			<arg value="installApp" />
 			<arg value="--zpk=${basedir}/build/zf-rest.zpk" />
 			<arg value="--target=testing" />
-			<arg value="--baseUri='http://zfrest.test'" />
-			<arg value="--createVhost=true" />
 		</exec>
 		<property name="deploy-testing.done" value="true" />
 	</target>
