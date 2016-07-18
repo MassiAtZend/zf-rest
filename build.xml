@@ -10,31 +10,6 @@
 	<property name="phpmetrics" value="phpmetrics" />
 	<property name="zsclient" value="/usr/local/zend/bin/zs-client.sh" />
 	<property file="/var/jenkins/zs.properties" />
-	<target name="full-build"
-		depends="prepare,static-analysis,phpunit,phpdox,-check-failure"
-		description="Performs static analysis, runs the tests, and generates project documentation" />
-	<target name="full-build-parallel"
-		depends="prepare,static-analysis-parallel,phpunit,phpdox,-check-failure"
-		description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation" />
-	<target name="quick-build" depends="prepare,lint,phpunit-no-coverage"
-		description="Performs a lint check and runs the tests (without generating code coverage reports)" />
-	<target name="static-analysis"
-		depends="lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci"
-		description="Performs static analysis" />
-	<!-- Adjust the threadCount attribute's value to the number of CPUs -->
-	<target name="static-analysis-parallel"
-		description="Performs static analysis (executing the tools in parallel)">
-		<parallel threadCount="2">
-			<sequential>
-				<antcall target="pdepend" />
-				<antcall target="phpmd-ci" />
-			</sequential>
-			<antcall target="lint" />
-			<antcall target="phpcpd-ci" />
-			<antcall target="phpcs-ci" />
-			<antcall target="phploc-ci" />
-		</parallel>
-	</target>
 	<target name="clean" unless="clean.done" description="Cleanup build artifacts">
 		<delete dir="${basedir}/build/api" />
 		<delete dir="${basedir}/build/coverage" />
